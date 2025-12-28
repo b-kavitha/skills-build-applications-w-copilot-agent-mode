@@ -13,9 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+"""octofit_tracker URL Configuration"""
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+import os
+
+# Get Codespace name dynamically
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME', 'localhost')
+BASE_URL = f"https://{CODESPACE_NAME}-8000.app.github.dev"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # API endpoints
+    #path('api/users/', include('users.urls')),        # users app
+    #path('api/activities/', include('activities.urls')),  # activities app
+    #path('api/teams/', include('teams.urls')),       # teams app
+    #path('api/leaderboard/', include('leaderboard.urls')), # leaderboard app
+    #path('api/workouts/', include('workouts.urls')), # workouts app
 ]
+
+# Optional: you can print BASE_URL for debugging
+print(f"API Base URL: {BASE_URL}")
+
